@@ -7,7 +7,7 @@ import { FaLocationArrow } from "react-icons/fa";
 
 export const Hero = () => {
   return (
-    <div className="h-full">
+    <>
       <div className="pb-20 pt-35">
         <Spotlight
           className="-top-40 -left-10 md:-left-32 mid:-top-20 h-screen"
@@ -44,7 +44,6 @@ export const Hero = () => {
             </a>
         </div>
       </div>
-      <BackgroundBeams />
-    </div>
+    </>
   );
 };
