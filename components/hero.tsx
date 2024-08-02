@@ -1,6 +1,5 @@
 import React from "react";
 import { Spotlight } from "./ui/spotlight";
-import { BackgroundBeams } from "./ui/backgroundBeam";
 import { TextGenerateEffect } from "./ui/textGenertor";
 import { Button } from "./ui/button";
 import { FaLocationArrow } from "react-icons/fa";
@@ -31,7 +30,7 @@ export const Hero = () => {
                 className=" text-[40px] md:text-5xl lg:text-6xl text-center text-blue-300 max-w-90"
                 words="Transforming Ideas into Seamless User Experience"
              />
-            <p className="text-center tracking mb-2 text-sm  text-blue-200">
+            <p className="text-center tracking mb-2 text-lg  text-blue-200">
                 Hi there, I&apos;m Sahil Kumar, Full Stack Developer from India 
             </p>
             <a href="#about">
