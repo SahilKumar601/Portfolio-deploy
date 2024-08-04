@@ -1,3 +1,5 @@
+import Approach from "@/components/Approach";
+import { Contact } from "@/components/Contact";
 import { Grid } from "@/components/Grid";
 import { Hero } from "@/components/hero";
 import { Projects } from "@/components/Projects";
@@ -15,6 +17,8 @@ export default function Home() {
         <BackgroundBeams className="h-[75vh]"/>
         <Grid/>
         <Projects/>
+        <Approach/>
+        <Contact/>
       </div>
       
     </main>
