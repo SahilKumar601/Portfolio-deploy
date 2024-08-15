@@ -33,7 +33,7 @@ export const Hero = () => {
             <p className="text-center tracking mb-2 text-lg  text-blue-200">
                 Hi there, I&apos;m Sahil Kumar, Full Stack Developer from India 
             </p>
-            <a href="#about">
+            <a href="#projects">
                 <Button
                     title="See projects"
                     icon={<FaLocationArrow/>}

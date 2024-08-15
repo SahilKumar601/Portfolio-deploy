@@ -1,57 +1,88 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { cn } from "@/lib/cn";
 import { GlobeDemo } from "./Globe";
+import { TextArea } from "./ui/textarea";
+import emailjs from '@emailjs/browser'
+import { toast } from "sonner";
 
 export function Contact() {
+  const [form,setForm] = useState({
+    name:"",
+    email:"",
+    message:"",
+  })
+  const [loading,setLoading] = useState(false);
+  const handleChange = (e:any) =>{
+    const {target} = e;
+      const {id,value} =target;
+      setForm({
+        ...form,
+        [id]: value,
+      });
+  }
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submitted");
+    console.log(form);
+    emailjs.send(
+      `${process.env.NEXT_PUBLIC_SERVICE_ID}`,
+      `${process.env.NEXT_PUBLIC_TEMPLATE_ID}`,
+      {
+        from_name: form.name,
+        to_name: "Sahil Kumar",
+        from_email: form.email,
+        to_email: "sahilku601@gmail.com",
+        message: form.message,
+        reply_to:form.email
+      },
+      `${process.env.NEXT_PUBLIC_API_KEY}`
+    ).then(()=>{
+      setLoading(false);
+      toast.success("Thank you, I'll contact as soon as possible")
+      setForm({
+        name:"",
+        email:"",
+        message:"",
+      })
+      console.log("email Sent")
+      
+    },(error)=>{
+      setLoading(false);
+      toast.error("Something went wrong");
+    }
+  )
   };
   return (
-    <div className="py-20">
+    <div id='contact' className="py-10">
       <h1 className="heading text-white">
         Contact <span className="text-purple">Me</span>
       </h1>
 
-      <div className="py-10 flex flex-row items-center justify-start p-4 gap-x-24 gap-y-8 mt-10">
+      <div className="flex flex-row items-center justify-start gap-x-24 gap-y-8 ml-20">
         <div className="max-w-md  rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-black">
           <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
-            Welcome to Aceternity
+            Get In Touch
           </h2>
           <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
-            Login to aceternity if you can because we don&apos;t have a login
-            flow yet
+          Let's collaborate on a project and bring our ideas to life!
           </p>
 
-          <form className="my-8" onSubmit={handleSubmit}>
-            <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
+          <form className="mt-8 flex flex-col gap-8" onSubmit={handleSubmit}>
+            <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-1">
               <LabelInputContainer>
-                <Label htmlFor="firstname">First name</Label>
-                <Input id="firstname" placeholder="Tyler" type="text" />
-              </LabelInputContainer>
-              <LabelInputContainer>
-                <Label htmlFor="lastname">Last name</Label>
-                <Input id="lastname" placeholder="Durden" type="text" />
+                <Label htmlFor="firstname">Your name</Label>
+                <Input id="name" placeholder="Tyler" type="text" value={form.name} onChange={handleChange} required />
               </LabelInputContainer>
             </div>
-            <LabelInputContainer className="mb-4">
+            <LabelInputContainer className="mb-2">
               <Label htmlFor="email">Email Address</Label>
-              <Input id="email" placeholder="contact@me.com" type="email" />
+              <Input id="email" placeholder="contact@me.com" type="email" value={form.email} onChange={handleChange} required />
             </LabelInputContainer>
-            <LabelInputContainer className="mb-4">
-              <Label htmlFor="password">Password</Label>
-              <Input id="password" placeholder="••••••••" type="password" />
-            </LabelInputContainer>
-            <LabelInputContainer className="mb-8">
-              <Label htmlFor="twitterpassword">Your twitter password</Label>
-              <Input
-                id="twitterpassword"
-                placeholder="••••••••"
-                type="twitterpassword"
-              />
+            <LabelInputContainer className="mb-2">
+              <Label htmlFor="message">Your Message</Label>
+              <TextArea id="message" placeholder="write your message" value={form.message} onChange={handleChange} />
             </LabelInputContainer>
 
             <button
@@ -63,7 +94,7 @@ export function Contact() {
             </button>
           </form>
         </div>
-        <div className="w-full pb-15 mb-10 bg-black-100">
+        <div className="w-1/2 pb-15 mb-10 bg-black-100">
             <GlobeDemo />
         </div>
 

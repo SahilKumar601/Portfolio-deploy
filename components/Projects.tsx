@@ -5,7 +5,7 @@ import { FaLink } from "react-icons/fa";
 
 export const Projects = () => {
   return (
-    <div className="py-20">
+    <div id="projects" className="py-20">
         <h1 className="heading text-white">
             A small section of {' '}
             <span className="text-purple">recent projects</span>
