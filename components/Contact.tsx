@@ -66,7 +66,7 @@ export function Contact() {
             Get In Touch
           </h2>
           <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
-          Let's collaborate on a project and bring our ideas to life!
+          Let &apos; s collaborate on a project and bring our ideas to life
           </p>
 
           <form className="mt-8 flex flex-col gap-8" onSubmit={handleSubmit}>
