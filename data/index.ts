@@ -81,7 +81,7 @@ export const projects = [
     id: 2,
     title: "Manuscript",
     des: "A Digital library aiming to preserve and translate old Manuscripts.",
-    img: "/Manuscripts.png",
+    img: "/ManuScripts.png",
     iconLists: ["/react.svg", "/tail.svg", "/js.svg","three.svg","/cloudinary.svg","/node.svg","sanity.svg"],
     link: "https://github.com/SahilKumar601/manuscipt-reader",
   },
